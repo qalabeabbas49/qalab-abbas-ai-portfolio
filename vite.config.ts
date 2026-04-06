@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Data-Analyst-Portfolio/',
+  base: '/qalab-abbas-ai-portfolio/',
   plugins: [react()],
 })

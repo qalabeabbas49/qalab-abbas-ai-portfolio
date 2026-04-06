@@ -1,4 +1,4 @@
-# Qalab Abbas Portfolio
+# Qalab Abbas AI Portfolio
 
 Personal portfolio site built with React, TypeScript, Vite, and Framer Motion.
 
@@ -21,7 +21,7 @@ npm run build
 This repository is configured as a GitHub Pages project site, so the Vite base path is set to:
 
 ```txt
-/Data-Analyst-Portfolio/
+/qalab-abbas-ai-portfolio/
 ```
 
 The included GitHub Actions workflow builds and deploys the site to GitHub Pages on pushes to `main` or `ML-Engineer`.

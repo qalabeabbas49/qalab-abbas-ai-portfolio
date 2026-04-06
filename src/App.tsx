@@ -97,6 +97,7 @@ function Tag({ children }: TagProps) {
 function App() {
   const year = new Date().getFullYear()
   const projectEmail = `mailto:${contactLinks.email}?subject=AI%20Systems%20Project`
+  const resumeHref = `${import.meta.env.BASE_URL}Qalab-Abbas-Senior-AI-Engineer-CV.pdf`
   const [activeStage, setActiveStage] = useState(0)
   const [pointer, setPointer] = useState({ x: 58, y: 24 })
 
@@ -133,7 +134,7 @@ function App() {
           </span>
           <span>
             <strong>Qalab Abbas</strong>
-            <small>AI Systems Engineer</small>
+            <small>Senior AI Engineer</small>
           </span>
         </a>
 
@@ -142,6 +143,9 @@ function App() {
           <a href="#case-studies">Case Studies</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
+          <a href={resumeHref} download="Qalab-Abbas-Senior-AI-Engineer-CV.pdf">
+            CV
+          </a>
         </nav>
       </header>
 
@@ -180,6 +184,13 @@ function App() {
               </a>
               <a className="button button-secondary" href="#case-studies">
                 View Case Studies
+              </a>
+              <a
+                className="button button-secondary"
+                href={resumeHref}
+                download="Qalab-Abbas-Senior-AI-Engineer-CV.pdf"
+              >
+                Download CV
               </a>
             </motion.div>
 
@@ -499,6 +510,13 @@ function App() {
               <div className="contact-panel__actions">
                 <a className="button button-primary" href={projectEmail}>
                   Email Qalab
+                </a>
+                <a
+                  className="button button-secondary"
+                  href={resumeHref}
+                  download="Qalab-Abbas-Senior-AI-Engineer-CV.pdf"
+                >
+                  Download CV
                 </a>
                 <a
                   className="button button-secondary"
