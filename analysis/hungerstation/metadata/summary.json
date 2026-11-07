@@ -1,0 +1,26 @@
+{
+  "generated_at_utc": "2026-04-10T03:35:54.122751+00:00",
+  "input_path": "/Users/qq-nux/Downloads/hungerstation_restaurants.json",
+  "file_size_bytes": 461849482,
+  "restaurant_count": 8566,
+  "restaurant_with_menu_count": 8548,
+  "restaurant_with_products_count": 5757,
+  "menu_section_count": 72478,
+  "menu_item_count": 430811,
+  "product_count": 18871,
+  "unique_chain_names": 6459,
+  "unique_chain_ids": 6850,
+  "unique_brand_ids": 91,
+  "unique_exact_coordinates": 7647,
+  "duplicate_restaurant_ids": 0,
+  "mean_rating_rated_only": 4.1529,
+  "weighted_rating_by_review_count": 4.2024,
+  "top_outputs": {
+    "summary_report": "/Users/qq-nux/Documents/GitHub/Data-Analyst-Portfolio/analysis/hungerstation/reports/summary_report.md",
+    "restaurants_flattened": "/Users/qq-nux/Documents/GitHub/Data-Analyst-Portfolio/analysis/hungerstation/tables/restaurants_flattened.csv",
+    "numeric_summary": "/Users/qq-nux/Documents/GitHub/Data-Analyst-Portfolio/analysis/hungerstation/tables/numeric_summary.csv",
+    "categorical_counts": "/Users/qq-nux/Documents/GitHub/Data-Analyst-Portfolio/analysis/hungerstation/tables/categorical_counts.csv",
+    "chain_summary": "/Users/qq-nux/Documents/GitHub/Data-Analyst-Portfolio/analysis/hungerstation/tables/chain_summary.csv",
+    "quality_checks": "/Users/qq-nux/Documents/GitHub/Data-Analyst-Portfolio/analysis/hungerstation/tables/data_quality_checks.csv"
+  }
+}

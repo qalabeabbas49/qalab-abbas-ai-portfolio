@@ -1,0 +1,14 @@
+metric,value
+total_rows,8566
+restaurants_only_rows,8496
+non_restaurant_rows,70
+missing_location_rows,0
+external_id_non_null_rows,6
+external_id_null_rows,8560
+has_name_ar_key_anywhere_top_level,False
+has_query_lat_key_anywhere_top_level,False
+has_query_lng_key_anywhere_top_level,False
+unique_chain_ids,6850
+unique_chain_names,6459
+multi_branch_chain_ids,689
+multi_branch_chain_names,842
