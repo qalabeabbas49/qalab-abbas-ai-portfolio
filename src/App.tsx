@@ -677,7 +677,7 @@ function App() {
           <div className="footer__meta">
             <p>© {year} Qalab Abbas.</p>
             <a href={contactLinks.linkedin} target="_blank" rel="noreferrer">
-              linkedin.com/in/qalabeabbas
+              linkedin.com/in/qalabeabbas49
             </a>
           </div>
         </div>
