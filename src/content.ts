@@ -325,5 +325,5 @@ export const pipelineStages: PipelineStage[] = [
 
 export const contactLinks = {
   email: 'abbaseqalab@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/qalabeabbas/',
+  linkedin: 'https://www.linkedin.com/in/qalabeabbas49/',
 }
