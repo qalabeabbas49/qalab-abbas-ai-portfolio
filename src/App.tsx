@@ -10,13 +10,13 @@ import './App.css'
 import {
   caseStudies,
   contactLinks,
+  education,
   experience,
-  fitItems,
   heroHighlights,
   lessons,
+  openTo,
   pipelineStages,
   proofPoints,
-  services,
 } from './content'
 
 const revealTransition = {
@@ -96,8 +96,8 @@ function Tag({ children }: TagProps) {
 
 function App() {
   const year = new Date().getFullYear()
-  const projectEmail = `mailto:${contactLinks.email}?subject=AI%20Systems%20Project`
-  const resumeHref = `${import.meta.env.BASE_URL}Qalab-Abbas-Senior-AI-Engineer-CV.pdf`
+  const projectEmail = `mailto:${contactLinks.email}?subject=Role%20enquiry`
+  const resumeHref = `${import.meta.env.BASE_URL}Qalab-Abbas-Senior-ML-Engineer-CV.pdf`
   const [activeStage, setActiveStage] = useState(0)
   const [pointer, setPointer] = useState({ x: 58, y: 24 })
 
@@ -134,18 +134,15 @@ function App() {
           </span>
           <span>
             <strong>Qalab Abbas</strong>
-            <small>Senior AI Engineer</small>
+            <small>Senior ML Engineer</small>
           </span>
         </a>
 
         <nav className="topbar-nav" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#case-studies">Case Studies</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
-          <a href={resumeHref} download="Qalab-Abbas-Senior-AI-Engineer-CV.pdf">
-            CV
-          </a>
         </nav>
       </header>
 
@@ -158,39 +155,33 @@ function App() {
             variants={stagger}
           >
             <motion.p className="hero-kicker" variants={fadeInUp}>
-              AI systems engineering for teams building serious products
+              Senior ML Engineer, open to remote roles
             </motion.p>
 
             <motion.h1 variants={fadeInUp}>
-              I help teams turn ambitious AI ideas into{' '}
-              <span>reliable, fast, usable products</span>.
+              I build voice and clinical AI systems that{' '}
+              <span>hold up in production</span>.
             </motion.h1>
 
             <motion.p className="hero-body" variants={fadeInUp}>
-              I design and build AI systems with a strong focus on voice,
-              clinical NLP, structured outputs, and low-latency backends. My
-              role is usually to make the system clearer, more dependable, and
-              more ready for real users, not just internal demos.
-            </motion.p>
-
-            <motion.p className="hero-note" variants={fadeInUp}>
-              That means practical work across architecture, model selection,
-              APIs, streaming behavior, deployment, and optimization.
+              I am a Senior ML Engineer working on voice AI, clinical NLP, and
+              real-time audio ML. I am open to remote roles in the US, Canada,
+              the EU, and Pakistan, full-time or contract.
             </motion.p>
 
             <motion.div className="hero-actions" variants={fadeInUp}>
-              <a className="button button-primary" href={projectEmail}>
-                Start a Project
-              </a>
-              <a className="button button-secondary" href="#case-studies">
-                View Case Studies
-              </a>
               <a
-                className="button button-secondary"
+                className="button button-primary"
                 href={resumeHref}
-                download="Qalab-Abbas-Senior-AI-Engineer-CV.pdf"
+                download="Qalab-Abbas-Senior-ML-Engineer-CV.pdf"
               >
                 Download CV
+              </a>
+              <a className="button button-secondary" href="#projects">
+                See projects
+              </a>
+              <a className="button button-secondary" href={projectEmail}>
+                Email me
               </a>
             </motion.div>
 
@@ -308,74 +299,40 @@ function App() {
           ))}
         </section>
 
-        <section className="section" id="services">
+        <section className="section" id="experience">
           <Reveal>
             <SectionHeader
-              eyebrow="How I Help"
-              title="Clear technical help for teams that need more than model glue code."
-              body="I work best when a company needs senior judgment as much as implementation: deciding what to build, how to ship it, and how to keep it reliable once customers depend on it."
+              eyebrow="Experience"
+              title="Three roles across audio ML, healthcare AI, and speech."
+              body="My current role comes first. Each one is production work, from real-time audio ML to clinical documentation and speech R&D."
             />
           </Reveal>
 
-          <motion.div
-            className="service-list"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={stagger}
-          >
-            {services.map((service, index) => (
-              <motion.article
-                className="service-row"
-                key={service.title}
-                variants={fadeInUp}
-              >
-                <div className="service-row__index">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-
-                <div className="service-row__content">
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.summary}</p>
-                  </div>
-
-                  <ul>
-                    {service.details.map((detail) => (
-                      <li key={detail}>{detail}</li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
-        </section>
-
-        <section className="section section-muted">
-          <Reveal>
-            <SectionHeader
-              eyebrow="Best Fit"
-              title="The kinds of teams I’m most useful to."
-              body="If your product touches regulated workflows, live interaction, or important business operations, the engineering details start to matter very quickly."
-            />
-          </Reveal>
-
-          <div className="fit-grid">
-            {fitItems.map((item) => (
-              <Reveal className="fit-item" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+          <div className="timeline">
+            {experience.map((item) => (
+              <Reveal className="timeline-item" key={`${item.company}-${item.role}`}>
+                <p className="timeline-item__dates">{item.dates}</p>
+                <h3>
+                  {item.role}
+                  <span>{item.company}</span>
+                </h3>
+                <p>{item.focus}</p>
+                <ul className="timeline-item__list">
+                  {item.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
               </Reveal>
             ))}
           </div>
         </section>
 
-        <section className="section" id="case-studies">
+        <section className="section" id="projects">
           <Reveal>
             <SectionHeader
-              eyebrow="Case Studies"
-              title="Examples of the kinds of systems I’ve built."
-              body="These are written in plain terms on purpose. The value is not in clever project names. It is in what the system did, how it was designed, and why it mattered in practice."
+              eyebrow="Projects"
+              title="What I have built."
+              body="Five systems from my own work, one independent project via HubAIX, and one personal project. They are written in plain terms: what the system did, how it was designed, and why it mattered."
             />
           </Reveal>
 
@@ -459,8 +416,8 @@ function App() {
           <Reveal>
             <SectionHeader
               eyebrow="About"
-              title="A background across speech systems, healthcare AI, and production backend engineering."
-              body="The common thread is end-to-end ownership. I am strongest when I can connect the idea, the system design, the implementation details, and the production realities."
+              title="Speech systems, healthcare AI, and production backends."
+              body="The common thread is end-to-end ownership, from the idea and system design to the implementation and the production realities."
             />
           </Reveal>
 
@@ -478,17 +435,20 @@ function App() {
                 deployment paths that account for latency, security, and cost
                 from the start.
               </p>
+              <p>
+                I work comfortably across Asian, European and US time zones,
+                with full US-hours overlap.
+              </p>
             </Reveal>
 
             <div className="timeline">
-              {experience.map((item) => (
-                <Reveal className="timeline-item" key={`${item.company}-${item.role}`}>
+              {education.map((item) => (
+                <Reveal className="timeline-item" key={item.degree}>
                   <p className="timeline-item__dates">{item.dates}</p>
                   <h3>
-                    {item.role}
-                    <span>{item.company}</span>
+                    {item.degree}
+                    <span>{item.school}</span>
                   </h3>
-                  <p>{item.focus}</p>
                 </Reveal>
               ))}
             </div>
@@ -499,14 +459,14 @@ function App() {
           <Reveal>
             <SectionHeader
               eyebrow="Contact"
-              title="If you’re building something ambitious, I’d be happy to look at it."
-              body="The best starting point is simple: send the product idea, the current blockers, and the outcome you want. I can help with architecture, implementation, or improving a system that already exists."
+              title="Hiring for a Senior or Staff ML role? Let’s talk."
+              body="Email is the quickest way to reach me. My CV has the full detail, and LinkedIn is there if you prefer to start that way."
             />
           </Reveal>
 
           <Reveal className="contact-panel">
             <div className="contact-panel__copy">
-              <p>Selective consulting and implementation work for high-value AI systems.</p>
+              <p>Open to remote Senior and Staff roles in ML, LLM, and voice AI, full-time or contract.</p>
               <div className="contact-panel__actions">
                 <a className="button button-primary" href={projectEmail}>
                   Email Qalab
@@ -514,7 +474,7 @@ function App() {
                 <a
                   className="button button-secondary"
                   href={resumeHref}
-                  download="Qalab-Abbas-Senior-AI-Engineer-CV.pdf"
+                  download="Qalab-Abbas-Senior-ML-Engineer-CV.pdf"
                 >
                   Download CV
                 </a>
@@ -535,12 +495,28 @@ function App() {
                 <dd>{contactLinks.email}</dd>
               </div>
               <div>
-                <dt>Focus</dt>
-                <dd>Voice AI, clinical NLP, production backends</dd>
+                <dt>Open to roles</dt>
+                <dd>
+                  <ul className="tag-row" aria-label="Open to roles">
+                    {openTo.roles.map((role) => (
+                      <li key={role}>
+                        <Tag>{role}</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
               </div>
               <div>
-                <dt>Best for</dt>
-                <dd>US and Canada startups, SaaS, and health tech teams</dd>
+                <dt>Open to regions</dt>
+                <dd>
+                  <ul className="tag-row" aria-label="Open to regions">
+                    {openTo.regions.map((region) => (
+                      <li key={region}>
+                        <Tag>{region}</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
               </div>
             </dl>
           </Reveal>
@@ -548,7 +524,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© {year} Qalab Abbas. Built for high-trust AI systems work.</p>
+        <p>© {year} Qalab Abbas. Senior ML Engineer. Open to remote roles.</p>
         <a href={contactLinks.linkedin} target="_blank" rel="noreferrer">
           linkedin.com/in/qalabeabbas
         </a>

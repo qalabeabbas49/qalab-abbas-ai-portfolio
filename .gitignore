@@ -4,3 +4,13 @@ dist/
 *.log
 .vite/
 Qalab_Senior_AI_Engineer-2.pdf
+
+# Local-only docs (per ~/.claude/CLAUDE.md)
+docs/
+**/docs/
+CHANGELOG.md
+**/CHANGELOG.md
+.handoff/
+
+# CV LaTeX source (local only; the finished PDF lives in public/)
+cv/

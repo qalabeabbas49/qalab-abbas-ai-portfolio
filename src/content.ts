@@ -4,12 +4,6 @@ export type ProofPoint = {
   note: string
 }
 
-export type Service = {
-  title: string
-  summary: string
-  details: string[]
-}
-
 export type CaseStudy = {
   index: string
   title: string
@@ -27,6 +21,7 @@ export type ExperienceItem = {
   company: string
   dates: string
   focus: string
+  highlights: string[]
 }
 
 export type Lesson = {
@@ -34,9 +29,15 @@ export type Lesson = {
   body: string
 }
 
-export type FitItem = {
-  title: string
-  body: string
+export type EducationItem = {
+  degree: string
+  school: string
+  dates: string
+}
+
+export type OpenTo = {
+  roles: string[]
+  regions: string[]
 }
 
 export type PipelineStage = {
@@ -46,75 +47,28 @@ export type PipelineStage = {
 }
 
 export const heroHighlights = [
-  'Real-time voice systems',
-  'Clinical NLP and structured outputs',
-  'Low-latency AI backends',
-  'Architecture to deployment ownership',
+  'Realtime voice AI',
+  'Healthcare AI and clinical NLP',
+  'Production LLM systems',
+  'Adversarial audio',
+  'Senior ML roles',
 ]
 
 export const proofPoints: ProofPoint[] = [
   {
-    value: '28',
-    label: 'Arabic dialects supported',
-    note: 'Built for Arabic and English clinical transcription workflows instead of generic voice demos.',
+    value: '0.40 to 0.24',
+    label: 'Mean WER, multi-model ASR selector',
+    note: 'Rule-based selector across ASR options on a 70-clip synthetic Arabic, English, Hindi and Urdu set (Nuxera AI).',
   },
   {
-    value: '<15s',
-    label: 'To final structured note',
-    note: 'Designed for rapid post-session consolidation instead of delayed batch reporting.',
+    value: '99.95%',
+    label: 'ICD-10-AM candidate recall@12',
+    note: 'Up from 97.7% over 35,262 test cases at 7.8 ms p95; retrieval recall, not clinically adjudicated (Nuxera AI).',
   },
   {
-    value: 'Realtime',
-    label: 'Voice interaction focus',
-    note: 'Streaming ASR, LLM, and TTS systems optimized for natural conversational flow.',
-  },
-  {
-    value: 'Prod',
-    label: 'Delivery mindset',
-    note: 'Cloud, VPC-restricted, hybrid, and on-prem deployment patterns for real buyers.',
-  },
-]
-
-export const services: Service[] = [
-  {
-    title: 'Architecture and Technical Strategy',
-    summary:
-      'For teams that need a clear build plan, better decisions, and fewer expensive mistakes before development scales up.',
-    details: [
-      'Architecture blueprints from idea through deployment',
-      'Model selection based on latency, cost, and reliability constraints',
-      'Failure-mode design for retries, validation, and recoverability',
-    ],
-  },
-  {
-    title: 'Voice AI Systems',
-    summary:
-      'Voice products that feel responsive, natural, and dependable instead of laggy or awkward.',
-    details: [
-      'ASR + LLM + TTS orchestration with buffering strategies',
-      'LiveKit and WebRTC implementations for realtime interaction',
-      'Conversation pipelines that feel human instead of staged',
-    ],
-  },
-  {
-    title: 'Clinical NLP and Structured AI Outputs',
-    summary:
-      'Structured AI workflows for documentation-heavy environments where clarity, traceability, and consistency matter.',
-    details: [
-      'Medical note generation and schema-first extraction',
-      'Domain-adapted transcription pipelines for Arabic and English',
-      'Audit-friendly output design for downstream systems',
-    ],
-  },
-  {
-    title: 'Optimization and Rescue Work',
-    summary:
-      'For AI products that already exist but feel too slow, too fragile, or too painful to deploy for serious customers.',
-    details: [
-      'Inference and throughput optimization on GPU-backed systems',
-      'Concurrency, streaming, and queueing improvements',
-      'Deployment hardening across Docker and cloud environments',
-    ],
+    value: '92%+',
+    label: 'Diarization success, low-noise audio',
+    note: 'Speech-separation pipeline for overlapping speakers; about 80% in fairly noisy environments (Furence).',
   },
 ]
 
@@ -219,24 +173,46 @@ export const caseStudies: CaseStudy[] = [
     ],
     stack: ['Agent workflows', 'Structured JSON', 'Theme engine', 'PPTX/PDF export'],
   },
-]
-
-export const fitItems: FitItem[] = [
   {
-    title: 'Startups moving from prototype to product',
-    body: 'You already proved demand and now need architecture, deployment, and technical depth that can survive real users.',
+    index: '06',
+    title: 'Multi-tenant voice-agent platform',
+    category: 'Voice AI / Independent Project via HubAIX',
+    intro:
+      'Legal-intake voice agents for a legal-tech startup serving about 17 law-firm clients, built as an independent project via HubAIX. This was project work, not a job.',
+    whatItDid:
+      'One Node service bridges telephony media streams to a realtime LLM, with each agent’s behavior driven by per-agent database configuration.',
+    howItWorked:
+      'I built warm and cold call transfer with voicemail detection, localized hold audio and a return-to-agent fallback, and designed per-call identity isolation so callers on shared phone lines never merge into one contact. I added runtime voice guards and a QA harness that runs real realtime sessions against simulated callers and asserts on tool calls.',
+    whyItMattered:
+      'Voice agents break in small behavioral ways that unit tests miss. The harness and the runtime guards made agent behavior something the team could test and rely on.',
+    highlights: [
+      'Root-caused warm-transfer failures (about 20% of accepted bridges dropped within 12 seconds) and authored the fix; added voicemail detection, localized hold audio and return-to-agent fallback',
+      'Found 49 distinct callers merging into one contact across 80 calls on a shared line; per-call identity isolation (shadow-mode resolver, zero-downtime index migration) verified on 11 of 11 live calls',
+      'Runtime guards: forced tool calls, strict phone and email validation, speech-recognition language lock, booking-window and business-hours rules; audited three repositories for 90 verified findings, 7 critical',
+      'QA harness exposed a defect: client-approved scripts were spoken only 11.3% of the time (28 offline harness tests; full suite grew to 930 tests)',
+      '4-arm, 200-conversation ablation: scripts embedded in the prompt were reproduced 2-8% of the time versus 100% (80 of 80) when injected at runtime',
+    ],
+    stack: ['Node.js', 'Fastify', 'Twilio', 'OpenAI Realtime', 'Supabase'],
   },
   {
-    title: 'Health tech teams with documentation workflows',
-    body: 'Clinical NLP, structured notes, multilingual transcription, and compliance-aware system thinking are central here.',
-  },
-  {
-    title: 'Voice AI and call automation products',
-    body: 'If interaction quality is being damaged by buffering, latency, interruption issues, or brittle pipelines, this is a strong fit.',
-  },
-  {
-    title: 'SaaS products adding AI interfaces',
-    body: 'Particularly useful for teams building retrieval, NL interfaces, decision layers, or complex LLM-backed backend workflows.',
+    index: '07',
+    title: 'Realtime voice-agent pipelines',
+    category: 'Voice AI / Personal Project',
+    intro:
+      'A personal project: voice agents backed by low-latency services that orchestrate speech recognition, LLM reasoning and speech synthesis.',
+    whatItDid:
+      'It runs voice agents over WebSocket streaming APIs, with ASR, LLM reasoning and TTS orchestrated by FastAPI services.',
+    howItWorked:
+      'I built the services with rate limiting, OpenAPI schema validation and structured logging, and set up deployment variants for cloud, VPC-restricted, hybrid and on-premise setups.',
+    whyItMattered:
+      'Customer constraints differ, so the same pipeline had to run under different security boundaries, with inference tuned for cost and concurrency.',
+    highlights: [
+      'Low-latency FastAPI services over WebSocket streaming APIs',
+      'Rate limiting, OpenAPI schema validation and structured logging',
+      'Cloud, VPC-restricted, hybrid and on-premise deployment variants',
+      'Inference tuned for cost and concurrency',
+    ],
+    stack: ['LiveKit', 'Pipecat', 'FastAPI'],
   },
 ]
 
@@ -250,41 +226,79 @@ export const lessons: Lesson[] = [
     body: 'Validation, schema guards, and repair loops matter more than clever prompts once a system is serving real users and real edge cases.',
   },
   {
-    title: 'Buyer constraints shape the architecture.',
+    title: 'Customer constraints shape the architecture.',
     body: 'Security boundaries, VPC restrictions, residency rules, and customer-specific integrations should influence design from day one, not after the build is finished.',
   },
 ]
 
 export const experience: ExperienceItem[] = [
   {
-    role: 'Senior AI Engineer',
-    company: 'Nuxera AI',
-    dates: 'Aug 2025 - Present',
-    focus:
-      'Healthcare AI systems, FastAPI services, medical note generation, ICD workflows, and production reliability.',
+    role: 'Senior ML Engineer',
+    company: 'Augmentation Co, Remote',
+    dates: 'Aug 2026 - Present',
+    focus: 'Real-time audio ML and speech privacy; details confidential.',
+    highlights: [
+      'Own robustness evaluation for a real-time audio ML system: 100+ numbered, pre-registered experiments in about 3 months, using held-out speakers, frozen data splits, confidence intervals and a shared experiment ledger',
+      'Stress-test models under realistic transmission conditions (compression, noise suppression, resampling); negative results are recorded alongside wins',
+      'Optimized and exported streaming neural models for low-latency on-device inference on Apple silicon, and integrated scoring into a native macOS app (Swift)',
+    ],
   },
   {
-    role: 'Senior LLM Engineer',
-    company: 'Spacedome',
-    dates: 'Oct 2024 - Aug 2025',
+    role: 'Senior ML Engineer',
+    company: 'Nuxera AI, Remote',
+    dates: 'Oct 2024 - Aug 2026',
     focus:
-      'Voice agents, LiveKit-based realtime systems, streaming APIs, deployment customization, and latency-conscious backend design.',
+      'Healthcare AI: clinical transcription, structured notes and EHR integration (Arabic and English).',
+    highlights: [
+      'Led a team of 3 engineers across a multi-repo platform (Node/TypeScript, Python, React/Next.js, Chrome extension) covering ASR, LLM note generation, clinical coding and EHR integration',
+      'Built a hospital-system coding pipeline (29-field note template, embedding retrieval plus a synonym layer): 81.0% recall@12 on a 330-observation benchmark; int8 index of 10.5 MB with no measured recall loss. Raised ICD-10-AM candidate recall@12 from 97.7% to 99.95% over 35,262 test cases at 7.8 ms p95 (retrieval recall, not clinically adjudicated)',
+      'Built security and compliance controls for SDAIA, ISO and SOC 2 audit readiness (audits in progress at the time): access control, audit logging and a dependency-audit gate in CI',
+      'Benchmarked ASR options on a 70-clip synthetic Arabic, English, Hindi and Urdu set: a rule-based multi-model selector cut mean WER from 0.40 to 0.24 (Arabic-English code-switching 0.36 to 0.22)',
+      'Designed an ASR resilience layer for clinical dictation: a guard flags script mismatch, heavy repetition, abnormal speech rate and truncation in primary-ASR output, and a cloud-hosted Whisper model gives a second opinion, with a shadow mode (verdict recorded, primary text returned), per-organization enforcement, a circuit breaker, bounded queues and deadlines',
+      'Ported and benchmarked a Saudi FDA (SFDA) drug-name matcher: 43% to 92% correct on 226 mentions with an LLM picker, and a safety gate that cut wrong picks from 4 to 0 on a held-out half. Built a drug-name correction step that raised correct drug names from 157 to 215 of 411 mentions on 118 synthetic conversations',
+      'Tested LoRA fine-tuning of Arabic ASR on drug names (0 to 91% on trained names, only 3-11% on unseen ones), then switched to a no-training drug-list and LLM approach that fixed 81% of failing medications with no harm on 135 control sentences',
+      'Grew a clinical documentation rule engine from 16 rules to a 30-rule heart-failure library with three-state exclusions, a completeness score, contradiction checks and ICD-10-AM coding (361 reviewed synonyms); failed checks are reported explicitly',
+      'Built SERA, a HIS-agnostic Manifest V3 Chrome extension published on the Chrome Web Store: records a consultation, produces a SOAP note and fills only clinician-confirmed codes through per-system adapters',
+    ],
   },
   {
     role: 'Senior Machine Learning Engineer',
-    company: 'Furence',
+    company: 'Furence, Seoul',
     dates: 'Aug 2021 - Sep 2024',
-    focus:
-      'Speaker diarization, TTS, speech enhancement, privacy-focused audio systems, and production speech R&D.',
-  },
-  {
-    role: 'Research Assistant',
-    company: 'Kumoh National Institute of Technology',
-    dates: 'Sep 2018 - Dec 2020',
-    focus:
-      'Machine learning and deep learning research, predictive systems, anomaly detection, and the technical base behind later production work.',
+    focus: 'Speaker diarization, TTS and speech enhancement.',
+    highlights: [
+      'Led a team of 4 researchers building speech-to-text, text-to-speech and speaker diarization systems for Woori Bank, integrated with backend services and user databases',
+      'Built a speech-separation pipeline that handled overlapping speakers: 92%+ diarization success in low-noise environments and about 80% in fairly noisy ones',
+      'Built noise removal and live speech emotion recognition: about 95% accuracy on two classes (good or bad) and about 88% on four (happy, sad, interested, uninterested)',
+      'Built a privacy-preserving audio masking system that automatically removes personal identifiers from recordings',
+      'Led development of Korean TTS models for commercial deployment and real-time speech enhancement for streaming',
+    ],
   },
 ]
+
+export const education: EducationItem[] = [
+  {
+    degree: 'M.Sc. IT Convergence',
+    school: 'Kumoh National Institute of Technology',
+    dates: '2018 - 2020',
+  },
+  {
+    degree: 'B.Eng. Electrical (Telecom)',
+    school: 'NUST',
+    dates: '2012 - 2016',
+  },
+]
+
+export const openTo: OpenTo = {
+  roles: [
+    'Senior or Staff ML engineer',
+    'Senior or Staff LLM engineer',
+    'Senior or Staff voice-AI engineer',
+    'Healthcare AI',
+    'Realtime voice',
+  ],
+  regions: ['Remote US', 'Remote Canada', 'Remote EU', 'Pakistan', 'Full-time or contract'],
+}
 
 export const pipelineStages: PipelineStage[] = [
   {
