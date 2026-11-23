@@ -1,69 +1,21 @@
-:root {
-  color-scheme: dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-
-  --bg: #0b1320;
-  --surface: rgba(255, 248, 238, 0.05);
-  --text-primary: #f7f1e8;
-  --text-secondary: #d9d2c8;
-  --text-soft: #ede6dc;
-  --text-muted: #a79b8d;
-  --accent: #f2c177;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Manrope', 'Segoe UI', sans-serif;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* Hallmark · shape: Manifesto (statement rows, an index of work, one pinned chapter; content kept) · genre: atmospheric · theme: Lumen (deal 2/3, seed personal-machine-learning-engineer-working-d06f·e9c01320·2026-11-23·r0) · redesign: full · job: hire · draw: 320661
+ * hero: Corridor · nav: floating pill · footer: statement · imagery: none (a generated waveform and spectrogram, no photographs) · signature: a synthetic voice signal drawn live in the hero, streaming past a brass playhead
+ * axes: dark/roman-serif/warm · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: E, the old pipeline cards and chips were cut to keep screens under the word budget and the hero to one idea */
+/* Hallmark · waive 38iii · the theme names the verb as its signature and "holds" appears once on the page, in the hero head · Lumen sets one accented verb in the hero and nowhere else */
+/* Hallmark · dropped onMouseMove, onMouseLeave · they drove the old hero pipeline panel (a pointer-follow glow), which the generated signal replaces; also dropped the decorative signal nodes, chips and the two hero footer lines, whose facts the case studies already state · 58 and 29 name them */
+/* Hallmark · reworded "I build voice and clinical AI systems that hold up in production" to "Voice and clinical AI that holds up" · 58 limits the hero headline to seven words */
+@import url("./tokens.css");
+@import url("./base.css");
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
   min-width: 320px;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(242, 193, 119, 0.18), transparent 36%),
-    radial-gradient(circle at 80% 0%, rgba(242, 193, 119, 0.08), transparent 18%),
-    linear-gradient(180deg, #131b2b 0%, var(--bg) 42%, #09111b 100%);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-}
-
-body,
-button,
-input,
-textarea,
-select {
-  font-family: var(--font-body);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
 }
 
 #root {
-  min-height: 100vh;
-}
-
-::selection {
-  background: rgba(242, 193, 119, 0.28);
-  color: var(--text-primary);
+  min-height: 100svh;
 }
